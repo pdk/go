@@ -1,9 +1,9 @@
 package maps
 
-// Realloc rebuilds a map and returns the new map/copy. Since a map can never
-// shrink, if you want to reclaim memory for deleted mappings, you need to
-// rebuild the map.
-func Realloc[T1 comparable, T2 any](m map[T1]T2) map[T1]T2 {
+// Copy creates and returns a new copy of a map. Since a map can never shrink,
+// if you want to reclaim memory for deleted mappings, you need to rebuild the
+// map.
+func Copy[T1 comparable, T2 any](m map[T1]T2) map[T1]T2 {
 
 	newMap := make(map[T1]T2,len(m))
 

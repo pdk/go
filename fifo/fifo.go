@@ -7,13 +7,10 @@ import (
 type FIFO[T any] struct {
 	items []T
 	at int
-	rotateAt int
 }
 
 func New[T any]() FIFO[T] {
-	return FIFO[T]{
-		rotateAt: 1000,
-	}
+	return FIFO[T]{	}
 }
 
 func (fi *FIFO[T]) Add(item T) {
@@ -28,7 +25,7 @@ func (fi *FIFO[T]) Next() (T,bool) {
 
 	item, rest := slices.HeadTail(fi.items)
 	fi.at++
-	if fi.at >= fi.rotateAt {
+	if fi.at >= 1000 {
 		rest = slices.Copy(rest)
 		fi.at = 0
 	}
