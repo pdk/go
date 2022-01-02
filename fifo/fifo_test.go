@@ -65,5 +65,21 @@ func TestFIFO(t *testing.T) {
 			f.Add(v + 1)
 		}
 	}
+}
+
+func TestRealloc(t *testing.T) {
+
+var f fifo.FIFO[int]
+
+	for i:=0;i<5000;i++{
+		f.Add(i)
+	}
+
+	for i:=0;i<5000;i++{
+		n,ok := f.Next()
+		if i!= n || !ok {
+			t.Errorf("expected %d, true, but got %d, %t", i, n, ok)
+		}
+	}
 
 }

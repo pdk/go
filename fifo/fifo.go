@@ -23,7 +23,7 @@ func (fi *FIFO[T]) Next() (T,bool) {
 		return t, false
 	}
 
-	item, rest := slices.HeadTail(fi.items)
+	item, rest := slices.Shift(fi.items)
 	fi.at++
 	if fi.at >= 1000 {
 		rest = slices.Copy(rest)

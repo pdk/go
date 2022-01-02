@@ -99,7 +99,7 @@ func Sum[T constraints.Integer](values []T) T {
 
 // Copy creates a new copy of the input slice.
 func Copy[T any](values []T) []T {
-	ns := make([]T, len(values), 0)
+	ns := make([]T, 0, len(values))
 	return append(ns, values...)
 }
 
@@ -159,9 +159,9 @@ func Count[T any](values []T, match func(T) bool) int {
 	return c
 }
 
-// HeadTail splits a slice into the first element, and a slice containing the
+// Shift splits a slice into the first element, and a slice containing the
 // rest of the elements.
-func HeadTail[T any](values []T) (T, []T) {
+func Shift[T any](values []T) (T, []T) {
 	if len(values) == 0 {
 		var t T
 		return t, []T(nil) // return zero values if empty
