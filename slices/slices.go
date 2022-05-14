@@ -1,7 +1,7 @@
 package slices
 
 import (
-	"constraints"
+	"golang.org/x/exp/constraints"
 )
 
 // Equal compares two slices of the same type with ==. If any elements are not
@@ -23,7 +23,7 @@ func Equal[T comparable](values1, values2 []T) bool {
 // Compare returns true if every comparison with the compare func returns true.
 // This provides a way to check if two slices are equal when the elements are
 // not comparable, by passing in an equality function.
-func Compare[T any](values1, values2 []T, compare func(T,T) bool) bool {
+func Compare[T any](values1, values2 []T, compare func(T, T) bool) bool {
 	if len(values1) != len(values2) {
 		return false
 	}
@@ -73,8 +73,8 @@ func Map[T1 any, T2 any](values []T1, f func(T1) T2) []T2 {
 }
 
 // Reduce combines all elements of a slice to produce a single value.
-func Reduce[T any](values []T, reduce func(T,T) T) T {
-	
+func Reduce[T any](values []T, reduce func(T, T) T) T {
+
 	var t T
 
 	if len(values) == 0 {
@@ -83,7 +83,7 @@ func Reduce[T any](values []T, reduce func(T,T) T) T {
 
 	t = values[0]
 
-	for i := 1; i<len(values) ; i++ {
+	for i := 1; i < len(values); i++ {
 		t = reduce(t, values[i])
 	}
 
@@ -92,8 +92,8 @@ func Reduce[T any](values []T, reduce func(T,T) T) T {
 
 // Sum produces the sum of any Integer type slice elements.
 func Sum[T constraints.Integer](values []T) T {
-	return Reduce(values, func(a,b T) T {
-		return a+b
+	return Reduce(values, func(a, b T) T {
+		return a + b
 	})
 }
 
@@ -147,9 +147,9 @@ func IndexF[T any](values []T, match func(T) bool) int {
 // Count returns the count of elements in values where the function match
 // returns true. Returns 0 if none match.
 func Count[T any](values []T, match func(T) bool) int {
-	
-	c:=0
-	
+
+	c := 0
+
 	for _, e := range values {
 		if match(e) {
 			c++
